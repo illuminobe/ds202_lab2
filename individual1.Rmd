@@ -1,0 +1,30 @@
+---
+title: "Lab #2"
+author: "Kobe Pranivong"
+date: "2/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+head(choco)
+```
+
+## Question Set (Individual)
+1. How are the ratings distributed? Draw a histogram of the ratings and describe it. Don’t forget to mention outliers, if there are any.
+```{r}
+hist(choco$Rating, main = "Rating distribution", xlab = "Ratings")
+```
+
+The shape of the ratings distribution is skewed left. The distribution is centered around 3-ish. There seems to be an outlier at the far right of the histogram.
+
+2. Do ratings depend on the cacao percentage of a chocolate bar?
+```{r}
+boxplot(Rating ~ factor(Cocoa.Pct), data = choco, main = "Ratings vs Cocoa Percentage", xlab = "Percent of Cocoa", ylab = "Rating")
+```
+
+The answer seems to be yes. From the boxplot, the higher average ratings occur between 63 and 70% chocolate.
+
