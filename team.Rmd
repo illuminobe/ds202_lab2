@@ -1,0 +1,43 @@
+---
+title: "Team Question Set"
+author: "Kobe Pranivong"
+date: "2/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. What is the overall number of chocolate bars rated?
+```{r}
+choco <- read.csv("https://xdaiisu.github.io/ds202materials/hwlabs/choco.csv")
+dim(choco)[1]
+```
+The overall number of chocolate bars rated is 1852.
+
+2. How does the number of ratings depend upon the year?
+```{r}
+c <- table(choco$Review.Date)
+barplot(c, main="Reviews per Year", xlab="Year", ylab="Reviews")
+```
+
+There was a trend of increasing number of reviews from 2006-2015, following a sharp decline in 2017.
+
+3. Which are the three locations with the most ratings? How do ratings compare across these company locations?
+```{r}
+t = table(choco$Company.Location)
+order(t, decreasing = TRUE)
+first = t[58]
+first
+second = t[19]
+second
+third = t[8]
+third
+```
+The three locations with the most ratings are: U.S.A., France, and Canada. France ratings have the lowest range of the three. France also has the most outliers. USA and Canada have very similar ranges, but Canada's IQR range is higher than USA's.
+
+```{r}
+df = choco[choco$Company.Location == "U.S.A." | choco$Company.Location == "France" | choco$Company.Location == "Canada", ]
+df$Company.Location = factor(df$Company.Location, levels=c("U.S.A.", "France", "Canada"))
+boxplot(df$Rating ~ df$Company.Location, main = "Ratings of Top Three Locations", xlab = "Company Location", ylab = "Rating")
+```
