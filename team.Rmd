@@ -1,6 +1,6 @@
 ---
 title: "Team Question Set"
-author: "Kobe Pranivong"
+author: "Kobe Pranivong; Yi Hang Khor"
 date: "2/5/2020"
 output: html_document
 ---
@@ -41,3 +41,21 @@ df = choco[choco$Company.Location == "U.S.A." | choco$Company.Location == "Franc
 df$Company.Location = factor(df$Company.Location, levels=c("U.S.A.", "France", "Canada"))
 boxplot(df$Rating ~ df$Company.Location, main = "Ratings of Top Three Locations", xlab = "Company Location", ylab = "Rating")
 ```
+
+4. Brainstorm and write down an interesting question that can be answer from the dataset. The question should not duplicate the questions above.
+
+What are the top companies in the top company location (USA)? How about Canada?
+
+
+5. Answer the question from the dataset.
+
+```{r}
+usa.data = choco[(choco$Company.Location == "U.S.A."), ]
+(highest.levels = levels(reorder(usa.data$Company, usa.data$Rating))[1:10])
+canada.data = choco[(choco$Company.Location == "Canada"), ]
+(secondhighest.levels = levels(reorder(canada.data$Company, canada.data$Rating))[1:10])
+```
+
+6. Write one paragraph commenting on the workflow.
+
+We did the first three questions on Kobe's computer, and then we pushed it onto the git repository. Bobby then pulled it and we did the last three questions on Bobby's computer. We worked on the code and questions together throughout all 6 questions. After we completed everything, Bobby pushed the final product back onto the git repository and Kobe pulled it again so it updated on his computer.
